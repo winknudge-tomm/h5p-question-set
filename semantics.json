@@ -156,6 +156,36 @@
     ]
   },
   {
+    "name": "backgroundPhotos",
+    "type": "list",
+    "label": "Question background image",
+    "description": "add a question background image for each slide in the order you want them to display on slides",
+    "entity": "option",
+    "min": 1,
+    "defaultNum": 1,
+    "field": {
+      "name": "backgroundRepeat",
+      "type": "group",
+      "label": "Add Background Image",
+      "fields": [
+        {
+          "name": "backgroundImage",
+          "type": "image",
+          "label": "Background image",
+          "optional": true,
+          "description": "An optional image to display if the question is wrong"
+        }
+      ]
+    }
+  },
+  {
+    "name": "feedbackBackground",
+    "type": "image",
+    "label": "Add Feedback Slide Background Image",
+    "optional": true,
+    "description": "An optional image to display if the question is wrong"
+  },
+  {
     "name": "endGame",
     "type": "group",
     "label": "Quiz finished",

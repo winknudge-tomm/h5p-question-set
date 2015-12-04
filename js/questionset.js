@@ -251,6 +251,7 @@ H5P.QuestionSet = function (options, contentId) {
     $myDom.children().hide().filter('.questionset-results').remove();
     rendered = true;
 
+
     // Get total score.
     var finals = self.getScore();
     var totals = self.totalScore();
@@ -298,6 +299,14 @@ H5P.QuestionSet = function (options, contentId) {
       scoreBar.appendTo($('.feedback-scorebar', $myDom));
       scoreBar.setScore(finals);
       $('.feedback-text', $myDom).html(scoreString);
+
+      // set background if it exists
+      if (params.feedbackBackground && params.feedbackBackground.path) {
+        var theFeedbackContainer = $myDom.find('.questionset-results');
+        var feedbackBackgroundPath = H5P.getPath( params.feedbackBackground.path, self.contentId);
+        
+        theFeedbackContainer.css('background-image', 'url(' + feedbackBackgroundPath + ')');
+      }
     };
 
     if (params.endGame.showAnimations) {
@@ -382,6 +391,16 @@ H5P.QuestionSet = function (options, contentId) {
       var question = questionInstances[i];
 
       question.attach($('.question-container:eq(' + i + ')', $myDom));
+
+      var theQuestionContainer = $('.question-container:eq(' + i + ')');
+      if (params.backgroundPhotos 
+        && params.backgroundPhotos[i] 
+        && params.backgroundPhotos[i].path != '') {
+        var backgroundPath = H5P.getPath(params.backgroundPhotos[i].path, this.contentId);
+        
+        theQuestionContainer.css('background-image', 'url(' + backgroundPath + ')');
+      }
+
 
       // Listen for image resize
       registerImageLoadedListener(question);
