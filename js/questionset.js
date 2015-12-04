@@ -393,11 +393,12 @@ H5P.QuestionSet = function (options, contentId) {
       question.attach($('.question-container:eq(' + i + ')', $myDom));
 
       var theQuestionContainer = $('.question-container:eq(' + i + ')');
-      if (params.backgroundPhotos 
-        && params.backgroundPhotos[i] 
-        && params.backgroundPhotos[i].path != '') {
-        var backgroundPath = H5P.getPath(params.backgroundPhotos[i].path, this.contentId);
+      if (params.backgroundPhotos // background photos parent exists
+        && params.backgroundPhotos[i] // this slide has a matching bg slide
+        && params.backgroundPhotos[i].blank != true // this slide not set to be blank
+        && params.backgroundPhotos[i].path != '') { // this slide actually has an image
         
+        var backgroundPath = H5P.getPath(params.backgroundPhotos[i].backgroundImage.path, this.contentId);
         theQuestionContainer.css('background-image', 'url(' + backgroundPath + ')');
       }
 

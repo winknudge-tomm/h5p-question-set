@@ -169,6 +169,14 @@
       "label": "Add Background Image",
       "fields": [
         {
+          "name": "blank",
+          "type": "boolean",
+          "label": "Leave a background free slide",
+          "optional": true,
+          "default": false,
+          "description": "Skip this slide, no background image will be shown"
+        },
+        {
           "name": "backgroundImage",
           "type": "image",
           "label": "Background image",
