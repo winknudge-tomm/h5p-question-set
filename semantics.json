@@ -182,6 +182,13 @@
           "label": "Background image",
           "optional": true,
           "description": "An optional image to display if the question is wrong"
+        },
+        {
+          "name": "slideRatio",
+          "type": "number",
+          "label": "height percentage ratio",
+          "optional": true,
+          "description": "height percentage in relation to the width of question"
         }
       ]
     }

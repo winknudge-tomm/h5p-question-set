@@ -394,13 +394,26 @@ H5P.QuestionSet = function (options, contentId) {
 
       var theQuestionContainer = $('.question-container:eq(' + i + ')');
       if (params.backgroundPhotos // background photos parent exists
-        && params.backgroundPhotos[i] // this slide has a matching bg slide
-        && params.backgroundPhotos[i].blank != true // this slide not set to be blank
-        && params.backgroundPhotos[i].path != '') { // this slide actually has an image
+        && params.backgroundPhotos[i] ) {// this slide has a matching bg slide
+      // this checks there is actually a backgroundPhotos Config set
+
+        // manage Background Images
+        if (params.backgroundPhotos[i].blank != true // this slide not set to be blank
+          && params.backgroundPhotos[i].path != '') { // this slide actually has an image
+
+          var backgroundPath = H5P.getPath(params.backgroundPhotos[i].backgroundImage.path, this.contentId);
+          theQuestionContainer.css('background-image', 'url(' + backgroundPath + ')');          
+        }
+
+
+        // Check if slide ratio is set
+        if (params.backgroundPhotos[i].slideRatio) {
+          theQuestionContainer.css('height', theQuestionContainer.width() * (params.backgroundPhotos[i].slideRatio/100) + 'px');
+        }
+
         
-        var backgroundPath = H5P.getPath(params.backgroundPhotos[i].backgroundImage.path, this.contentId);
-        theQuestionContainer.css('background-image', 'url(' + backgroundPath + ')');
       }
+
 
 
       // Listen for image resize
